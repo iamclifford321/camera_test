@@ -38,7 +38,8 @@ function loadLabeledImages(){
 const video = document.getElementById('video')
 
 function startVideo(){
-    navigator.getUserMedia(
+  console.log(navigator);
+    navigator.mediaDevices.getUserMedia(
         {video:{}},
         stream => video.srcObject = stream,
         err => console.log(err)
