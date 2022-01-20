@@ -52,6 +52,15 @@ function loadLabeledImages(){
 
 const video = document.getElementById('video')
 
+// stop video stream
+function stopVideoStream() {
+  if (videoStream) {
+    videoStream.getTracks().forEach((track) => {
+      track.stop();
+    });
+  }
+}
+
 async function startVideo(){
     // navigator.getUserMedia(
     //     {video:{}},
@@ -60,7 +69,8 @@ async function startVideo(){
     // )
 
     // constraints.video.facingMode = useFrontCamera ? "user" : "environment";
-    constraints.video.facingMode = "user";
+    stopVideoStream();
+    constraints.video.facingMode = "environment";
 
     try {
       videoStream = await navigator.mediaDevices.getUserMedia(constraints);
