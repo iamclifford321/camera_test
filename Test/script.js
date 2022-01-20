@@ -1,5 +1,5 @@
 const imageUpload = document.getElementById('imageUpload');
-const MODEL_URL = '/face-api-testing/models'
+const MODEL_URL = 'face-api-testing/models'
 
 const constraints = {
   video: {
@@ -52,15 +52,6 @@ function loadLabeledImages(){
 
 const video = document.getElementById('video')
 
-// stop video stream
-function stopVideoStream() {
-  if (videoStream) {
-    videoStream.getTracks().forEach((track) => {
-      track.stop();
-    });
-  }
-}
-
 async function startVideo(){
     // navigator.getUserMedia(
     //     {video:{}},
@@ -69,7 +60,6 @@ async function startVideo(){
     // )
 
     // constraints.video.facingMode = useFrontCamera ? "user" : "environment";
-    stopVideoStream();
     constraints.video.facingMode = "environment";
 
     try {

@@ -17,7 +17,7 @@
           <h1 class="title">
             JavaScript Camera
           </h1>
-          <video autoplay id="video"></video>
+          <video autoplay id="video" width="720" height="560"></video>
           <button class="button is-hidden" id="btnPlay">
             <span class="icon is-small">
               <i class="fas fa-play"></i>
@@ -58,6 +58,7 @@
   </footer>
 
   <canvas class="is-hidden" id="canvas"></canvas>
+  <script src="Test/dist/face-api.min.js"></script>
   <script src="script.js"></script>
 </body>
 
