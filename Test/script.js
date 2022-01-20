@@ -38,11 +38,21 @@ function loadLabeledImages(){
 const video = document.getElementById('video')
 
 function startVideo(){
-    navigator.getUserMedia(
-        {video:{}},
-        stream => video.srcObject = stream,
-        err => console.log(err)
-    )
+    // navigator.getUserMedia(
+    //     {video:{}},
+    //     stream => video.srcObject = stream,
+    //     err => console.log(err)
+    // )
+
+    constraints.video.facingMode = useFrontCamera ? "user" : "environment";
+
+    try {
+      videoStream = await navigator.mediaDevices.getUserMedia(constraints);
+      video.srcObject = videoStream;
+    } catch (err) {
+      alert("Could not access the camera");
+    }
+
 }
 video.addEventListener('play', async () => {
     const canvas = faceapi.createCanvasFromMedia(video)
