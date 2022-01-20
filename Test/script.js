@@ -1,6 +1,21 @@
 const imageUpload = document.getElementById('imageUpload');
 const MODEL_URL = '/face-api-testing/models'
 
+const constraints = {
+  video: {
+    width: {
+      min: 1280,
+      ideal: 1920,
+      max: 2560,
+    },
+    height: {
+      min: 720,
+      ideal: 1080,
+      max: 1440,
+    },
+  },
+};
+
 Promise.all([
 
     faceapi.nets.tinyFaceDetector.loadFromUri(MODEL_URL),
@@ -37,14 +52,15 @@ function loadLabeledImages(){
 
 const video = document.getElementById('video')
 
-function startVideo(){
+async function startVideo(){
     // navigator.getUserMedia(
     //     {video:{}},
     //     stream => video.srcObject = stream,
     //     err => console.log(err)
     // )
 
-    constraints.video.facingMode = useFrontCamera ? "user" : "environment";
+    // constraints.video.facingMode = useFrontCamera ? "user" : "environment";
+    constraints.video.facingMode = "user";
 
     try {
       videoStream = await navigator.mediaDevices.getUserMedia(constraints);
